@@ -9,6 +9,8 @@ The device is designed to be energy-efficient and easy to use, featuring a simpl
 
 ## Block Diagram
 
+![Block Diagram](Images/Block%20Diagram.png)
+
 ## BOM (Bill of Materials)
 
 | Component | Purchase Link | Datasheet |
