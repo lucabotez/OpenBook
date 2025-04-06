@@ -121,6 +121,18 @@ The device is designed to be energy-efficient and easy to use, featuring a simpl
 
 ## Hardware Description
 
+- **ESP32-C6-WROOM-1-N8** – Main microcontroller with integrated **Wi-Fi** and **BLE**; manages communication, sensors, and display.
+- **BME688** – Environmental and air quality sensor (**temperature**, **humidity**, **pressure**, **gas**); connected via **I²C**.
+- **DS3231SN** – High-precision **RTC (Real-Time Clock)** module for maintaining accurate time; connected via **I²C**.
+- **MAX17048** – Battery level monitor with **I²C** interface, provides **State of Charge (SOC)** estimation.
+- **SD Card Module** – Used for local data storage; communicates with the ESP32 via **SPI**.
+- **E-Ink Display** – Low-power **e-paper display** with **SPI** interface; includes signals like `EPD_CS`, `EPD_DC`, `EPD_RST`, `EPD_BUSY`.
+- **W25Q512JVEIQ (64MB NOR Flash)** – External **SPI** flash memory for storing firmware or large datasets.
+- **BOOT and RESET Buttons** – Connected to **GPIO** for bootloader activation and system reset control.
+- **MCP73831** – **Li-Po battery charging controller**, directly manages the charging process.
+- **XC6220A331MR-G (LDO Regulator)** – **3.3V voltage regulator** that powers logic circuits from battery or USB input.
+- **USB-C Port (USB4110-GF-A)** – Provides **power input** and **serial interface** for code upload and debugging.
+
 ## Detailed ESP32-C6 View
 
 **IO0 - INT_RTC**
