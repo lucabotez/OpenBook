@@ -2,6 +2,12 @@ Botez Luca, 334CA
 
 # OpenBook
 
+## About
+This project is a minimalist eBook Reader called OpenBook, built on the ESP32-C6 platform and equipped with a 7.5-inch e-paper display, a Li-Po battery, USB-C charging, and physical control buttons.
+
+The device is designed to be energy-efficient and easy to use, featuring a simple interface controlled via GPIOs, with text display functions aimed at providing an optimal e-reading experience.
+
+## Block Diagram
 
 ## BOM (Bill of Materials)
 
@@ -110,3 +116,95 @@ Botez Luca, 334CA
 | U3 | [https://ro.mouser.com/ProductDetail/Analog-Devices-Maxim-Integrated/DS3231SN](https://ro.mouser.com/ProductDetail/Analog-Devices-Maxim-Integrated/DS3231SN?qs=1eQvB6Dk1vhUlr8%2FOrV0Fw%3D%3D) | https://ro.mouser.com/datasheet/2/609/DS3231-3421123.pdf |
 | U4 | [https://ro.mouser.com/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17048G+T10](https://ro.mouser.com/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17048G%2bT10?qs=D7PJwyCwLAoGnnn8jEPRBQ%3D%3D) | https://ro.mouser.com/datasheet/2/609/MAX17048_MAX17049-3469099.pdf |
 | U5 | [https://ro.mouser.com/ProductDetail/Microchip-Technology/MCP73831T-2ACI-OT](https://ro.mouser.com/ProductDetail/Microchip-Technology/MCP73831T-2ACI-OT?qs=yUQqVecv4qvbBQBGbHx0Mw%3D%3D) | https://ro.mouser.com/datasheet/2/268/MCP73831_Family_Data_Sheet_DS20001984H-3441711.pdf |
+
+## Hardware Description
+
+## Detailed ESP32-C6 View
+
+**IO0 - INT_RTC**
+- Interrupt signal that can wake up the ESP32 from deep sleep.
+- Used by RTC.
+
+**IO1 – 32KHZ**
+- The DS3231’s 32.768 kHz clock output, routed to the ESP32‐C6.
+- Used by ESP32‐C6.
+
+**IO2 – MISO**
+- Hardware-dedicated SPI pin, offering high speed and native compatibility.
+- Used by NOR Flash, E-Paper, microSD.
+
+**IO3 - EPD_BUSY**
+- GPIO status signal sent by the EPD driver, ESP32 reads it to check if the screen is busy.
+- Used by E-Paper Display.
+
+**IO4 – SS_SD**
+- Selects the SD card during reading; chosen to avoid conflicts with other CS lines already in use.
+- Used by microSD Card.
+
+**IO5 – EPD_DC**
+- Control signal specific to EPD to differentiate between commands and data.
+- Used by E-Paper Display.
+
+**IO6 – SCK**
+- Recommended pin for SPI clock in multi-device implementations; allows SPI bus sharing.
+- Used by NOR Flash, E-Paper, microSD.
+
+**IO7 – MOSI**
+- Utilized for SPI data transmission, compatible with all connected SPI peripherals.
+- Used by NOR Flash, E-Paper, microSD.
+
+**IO9 – IO/BOOT**
+- Standard pin for entering programming mode on the ESP32-C6.
+- Used by BOOT Button.
+
+**IO10 - EPD_CS**
+- Selects the display during SPI transfers; doesn’t interfere with the rest of the SPI devices.
+- Used by E-Paper Display.
+
+**IO11 – FLASH_CS**
+- Dedicated pin to activate the external Flash memory without interfering with other SPI peripherals.
+- Used by External NOR Flash Memory.
+
+**IO12 – USB_D-**
+- Direct USB data lines for the built‐in USB peripheral, going to the USB connector.
+- Used by USB-C connector.
+
+**IO13 – USB_D+**
+- Direct USB data lines for the built‐in USB peripheral, going to the USB connector.
+- Used by USB-C connector.
+
+**IO15 – IO/CHANGE**
+- General-purpose GPIO chosen for user-defined actions (e.g. Next Page).
+- Used by CHANGE Button.
+
+**IO16 – TX**
+- Traditional serial line used for flashing the older ESP chips and debug logs.
+- Used by Serial Debug.
+
+**IO17 – RX**
+- Traditional serial line used for flashing the older ESP chips and debug logs.
+- Used by Serial Debug.
+
+**IO18 – RTC_RST**
+- External manual reset for the RTC, useful for initial synchronization or watchdog purposes.
+- Used by RTC.
+
+**IO19 – I2C_PW**
+- 3.3V rail dedicated to powering I2C peripherals (sensors, RTC, battery gauge).
+- Used by RTC, BME680, Qwiic.
+
+**IO20 – EPD_3V3_C**
+- 3.3V supply line that powers the E‐paper Display module.
+- Used by E-Paper Display.
+
+**IO21 – SDA**
+- Data line for I2C communication; can be shared between multiple sensors.
+- Used by RTC, BME680, Qwiic.
+
+**IO22 – SCL**
+- I2C clock line; synchronizes with SDA for reliable transmission.
+- Used by RTC, BME680, Qwiic.
+
+**IO23 – EPD_RST**
+- Resets the EPD circuit before initialization or display updates.
+- Used by E-Paper Display.
